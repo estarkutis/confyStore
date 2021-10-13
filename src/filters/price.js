@@ -1,6 +1,19 @@
-import { getElement } from '../utils.js';
-import display from '../displayProducts.js';
+import { getElement } from "../utils.js";
+import display from "../displayProducts.js";
 
-const setupPrice = () => {};
+const setupPrice = (store) => {
+  const priceInput = getElement(".price-filter");
+  const priceValue = getElement(".price-value");
+
+  //   setup filter
+  let maxPrice = store.map((product) => product.price);
+  maxPrice = Math.max(...maxPrice);
+  //   console.log(maxPrice); galime matyti maximale kaina produkto
+  maxPrice = Math.ceil(maxPrice / 100);
+  priceInput.value = maxPrice;
+  priceInput.max = maxPrice;
+  priceInput.min = 0;
+  priceValue.textContent = `Value : $${maxPrice}`;
+};
 
 export default setupPrice;
